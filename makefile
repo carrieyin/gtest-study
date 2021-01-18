@@ -1,16 +1,23 @@
 object = main.o TestA.o sample1_unittest.o sample1.o
 cpp = ${fileter %.cpp}
 GTEST_DIR = ../googletest/googletest
+GMOCK_DIR = ../googletest/googlemock
+VPATH=${GTEST_DIR}/src:${GMOCK_DIR}/src
 
-all: libgtest.a test 
+all: libgtest.a libgmock.a test 
 
 test:$(object)
-	g++  -isystem ${GTEST_DIR}/include $(object) libgtest.a  -o  test
+	g++  -isystem ${GTEST_DIR}/include $(object) libgtest.a libgmock.a -o  test
 
-libgtest.a:
-	g++ -isystem ${GTEST_DIR}/include -I${GTEST_DIR} \
+libgtest.a: gtest-all.cc
+	g++ -isystem ${GTEST_DIR}/include -I${GTEST_DIR}\
       -pthread -c ${GTEST_DIR}/src/gtest-all.cc
 	ar -rv libgtest.a gtest-all.o
+
+libgmock.a: gmock-all.cc
+	g++ -isystem ${GMOCK_DIR}/include    -I${GTEST_DIR}/include -I${GMOCK_DIR}\
+      -pthread -c ${GMOCK_DIR}/src/gmock-all.cc
+	ar -rv libgmock.a gmock-all.o
 
 $(object):%.o:%.cpp
 	g++  -c $< -I$(GTEST_DIR)/include -o $@
@@ -19,4 +26,4 @@ $(object):%.o:%.cpp
 .PHONY : clean
 clean:
 	rm -rf $(object);
-	rm -rf test.exe libgtest.a gtest-all.o
+	rm -rf test.exe *.o *.a
