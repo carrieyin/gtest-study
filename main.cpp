@@ -3,8 +3,9 @@
 #include <iostream>
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
-   cout<<"test"<<endl;
-    system("pause");
+  std::cout << "Running main() from gtest_main.cc\n";  
+  testing::InitGoogleTest(&argc, argv);  
+  return RUN_ALL_TESTS(); 
 }
