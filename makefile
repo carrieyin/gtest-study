@@ -1,4 +1,4 @@
-object = main.o TestA.o sample1_unittest.o sample1.o
+object = main.o TestA.o sample1_unittest.o sample1.o TestAUnitTest.o
 cpp = ${fileter %.cpp}
 GTEST_DIR = ../googletest/googletest
 GMOCK_DIR = ../googletest/googlemock
