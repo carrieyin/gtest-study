@@ -1,8 +1,11 @@
 GTEST_DIR = ../googletest/googletest
 GMOCK_DIR = ../googletest/googlemock
-VPATH=${GTEST_DIR}/src:${GMOCK_DIR}/src
+VPATH=${GTEST_DIR}/src:${GMOCK_DIR}/src:Unittest
 GTESTHEAD=-I${GTEST_DIR}/include -I${GMOCK_DIR}
-object = main.o TestA.o sample1_unittest.o sample1.o TestAUnitTest.o 
+UNITTESTDIR=Unittest
+UNITTESTHEAD=../
+object = main.o TestA.o  sample1.o 
+unittestobject = TestAUnitTest.o sample1_unittest.o 
 all: libgmock.a libgtest.a test
 
 gtest-all.o: gtest-all.cc
@@ -19,12 +22,14 @@ gmock-all.o: gmock-all.cc
 libgmock.a: gmock-all.o
 	ar -rv libgmock.a gmock-all.o
 
-test:$(object)
-	g++  -isystem ${GTEST_DIR}/include $(object) libgtest.a libgmock.a -o  test
+test:$(object) $(unittestobject)
+	g++  -isystem ${GTEST_DIR}/include $(object) $(unittestobject) libgtest.a libgmock.a -o  test
 
 $(object):%.o:%.cpp
 	g++  -c $< -I$(GTEST_DIR)/include -o $@
 
+$(unittestobject):%.o:%.cpp
+	g++  -c $< -I$(GTEST_DIR)/include -I../ -o $@
 
 .PHONY : clean
 clean:
