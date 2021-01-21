@@ -2,9 +2,8 @@ GTEST_DIR = ../googletest/googletest
 GMOCK_DIR = ../googletest/googlemock
 VPATH=${GTEST_DIR}/src:${GMOCK_DIR}/src
 GTESTHEAD=-I${GTEST_DIR}/include -I${GMOCK_DIR}
-TEST= test
 object = main.o TestA.o sample1_unittest.o sample1.o TestAUnitTest.o 
-all:   libgmock.a libgest.a test
+all: libgmock.a libgtest.a test
 
 gtest-all.o: gtest-all.cc
 	g++ -isystem ${GTEST_DIR}/include -I${GTEST_DIR}\
