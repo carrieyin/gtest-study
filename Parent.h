@@ -1,3 +1,6 @@
+#ifndef PARENT_H
+#define PARENT_H
+
 class Parent
 {
 private:
@@ -9,10 +12,5 @@ public:
     virtual int geta() = 0;
 };
 
-Parent::Parent(/* args */)
-{
-}
 
-Parent::~Parent()
-{
-}
+#endif // !PARENT_H

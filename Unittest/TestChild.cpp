@@ -1,8 +1,15 @@
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 #include  "Child.h"
 
-TEST(penup1, parentTest)
+class MockChild : public Child{
+public:
+    MOCK_METHOD0(geta, int());
+};
+
+TEST(MockChild, geta)
 {
-    Child d;
-    
+    MockChild d;
+    EXPECT_CALL(d, geta).WillRepeatedly(testing::Return(10));
+    EXPECT_EQ(d.geta(), 10);
 }
