@@ -45,7 +45,7 @@ public:
     }
 
     TestA(/* args */);
-    ~TestA();
+    virtual ~TestA();
     void print();
 };
 

@@ -5,7 +5,7 @@ GTESTHEAD=-I${GTEST_DIR}/include -I${GMOCK_DIR}
 UNITTESTDIR=Unittest
 UNITTESTHEAD=../
 object = main.o TestA.o  sample1.o 
-unittestobject = TestAUnitTest.o sample1_unittest.o 
+unittestobject = TestAUnitTest.o sample1_unittest.o TestParent.o
 all: libgmock.a libgtest.a test
 
 gtest-all.o: gtest-all.cc
@@ -27,9 +27,9 @@ test:$(object) $(unittestobject)
 
 $(object):%.o:%.cpp
 	g++  -c $< -I$(GTEST_DIR)/include -o $@
-
+#注意这个地方需要-I. 不能是-I./区别是什么？为什么要加-I.
 $(unittestobject):%.o:%.cpp
-	g++  -c $< -I$(GTEST_DIR)/include -I../ -o $@
+	g++  -c $< -I$(GTEST_DIR)/include -I${GMOCK_DIR}/include -I. -o $@
 
 .PHONY : clean
 clean:

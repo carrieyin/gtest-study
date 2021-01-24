@@ -1,4 +1,5 @@
 #include "TestA.h"
+#include "TestAmock.h"
 
 TEST_F(TestA, isEven1)
 {
@@ -14,3 +15,9 @@ TEST_F(TestA, getNumber1)
 {
     EXPECT_EQ(10, getNum());
 }
+
+// TEST_F(TestA, mockTestA)
+// {
+//    MockTestA a;
+    
+// }
