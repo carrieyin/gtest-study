@@ -15,6 +15,11 @@ public:
     {
         return a;
     }
+
+    void seta(int a)
+    {
+        this->a = a;
+    }
 };
 
 

@@ -10,6 +10,7 @@ public:
     virtual ~Parent() ;
     virtual void penUp() = 0;
     virtual int geta() = 0;
+    virtual void seta(int) = 0;
 };
 
 
