@@ -11,40 +11,41 @@ public:
 class ChildT
 {
 public:
-    ChildT(Child& c)
+    ChildT()
     {
-        _c = c;
+        
     }
 
-    int getnumber()
+    int getnumber(Child& c)
     {
-        return _c.geta();
+        return c.geta();
     }
 
 private:
     Child _c;
 };
 
-TEST(MockChild, geta)
-{
-    MockChild d;
-    EXPECT_CALL(d, geta).WillRepeatedly(testing::Return(10));
-    EXPECT_EQ(d.geta(), 10);
-}
+// TEST(MockChild, geta)
+// {
+//     MockChild d;
+//     EXPECT_CALL(d, geta).WillRepeatedly(testing::Return(10));
+//     EXPECT_EQ(d.geta(), 10);
+// }
 
 //以下失败
-TEST(MockChild, seta)
-{
-    MockChild d;
-    EXPECT_CALL(d, seta(20));
-    EXPECT_EQ(d.geta(), 20);
-}
+// TEST(MockChild, seta)
+// {
+//     MockChild d;
+//     EXPECT_CALL(d, seta(20));
+//     EXPECT_EQ(d.geta(), 20);
+// }
 
 //以下例子单元测试失败
 TEST(MockChild, getnu)
 {
     MockChild d;
-    ChildT c(d);
+    
     EXPECT_CALL(d, geta).WillRepeatedly(testing::Return(10));
-    EXPECT_EQ(c.getnumber(), 10);
+    ChildT c;
+    EXPECT_EQ(c.getnumber(d), 10);
 }

@@ -4,8 +4,8 @@ VPATH=${GTEST_DIR}/src:${GMOCK_DIR}/src:Unittest
 GTESTHEAD=-I${GTEST_DIR}/include -I${GMOCK_DIR}
 UNITTESTDIR=Unittest
 UNITTESTHEAD=../
-object = main.o TestA.o  sample1.o Parent.o 
-unittestobject = TestAUnitTest.o sample1_unittest.o TestParent.o TestChild.o  TestTurtl.o
+object = main.o TestA.o  sample1.o Parent.o ClassTestP.o
+unittestobject = TestAUnitTest.o sample1_unittest.o TestParent.o TestChild.o  TestTurtl.o TestBUnitTest.o
 all: libgmock.a libgtest.a test
 
 gtest-all.o: gtest-all.cc
