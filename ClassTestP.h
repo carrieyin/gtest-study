@@ -13,6 +13,11 @@ public:
     {
         cout<<"Class Test P" <<endl;
     }
+    virtual void testp1()
+    {
+        cout<<"test p1" <<endl;
+    }
+
     ClassTestP(/* args */);
     ~ClassTestP();
 };
@@ -35,9 +40,14 @@ class ClassTestC: public ClassTestP
 private:
     /* data */
 public:
-void testprint()
+    void testprint()
     {
         cout<<"C"<<endl;
+    }
+
+    virtual void testc1()
+    {
+        cout<<"test c1" <<endl;
     }
     ClassTestC(/* args */);
     ~ClassTestC();
@@ -47,14 +57,14 @@ class TestVirtualTest
 {
 private:
     /* data */
-    ClassTestP p;
+    ClassTestP* p;
 public:
     TestVirtualTest(ClassTestP& p);
     ~TestVirtualTest();
     void getTest()
     {
         cout<<"!!!!!!!!!!!!"<<endl;
-        p.testprint();
+        (*p).testprint();
     }
 };
 

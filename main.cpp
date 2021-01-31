@@ -15,5 +15,12 @@ int main(int argc, char** argv)
   ClassTestC c;
   TestVirtualTest t(c);
   t.getTest();
+  cout<<"virtual table addr is: " << &c <<endl;
+  cout<<"the first function addr is: " << (int *)*(int* )(&c) <<endl;
+  typedef void (*Fun) ();
+  Fun pfun = (Fun) *((int *)*(int* )(&c));
+  pfun();
+
+  
   return RUN_ALL_TESTS(); 
 }

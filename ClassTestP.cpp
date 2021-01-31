@@ -32,7 +32,7 @@ ClassTestC::~ClassTestC()
 
 TestVirtualTest::TestVirtualTest(ClassTestP& p)
 {
-    this->p = p;
+    this->p = &p;
 }
 
 TestVirtualTest::~TestVirtualTest()
